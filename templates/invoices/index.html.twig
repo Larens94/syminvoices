@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title%}Syminvoice Invoices{% endblock %}
+
+{% block body%} 
+
+{% if invoices %}
+<table id="invoices" class="table table-striped">
+    <thead>
+        <tr>
+            <th>Invoice Title</th>
+            <th>Date</th>
+            <th>Number</th>
+            <th>Customer</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for r in invoices %}
+        <tr>
+            <td>{{ r.title }}</td>
+            <td>{{ r.date|date('Y-m-d H:i:s') }}</td>
+            <td>{{ r.number }}</td>
+            <td>{{ r.customer_id }}</td>
+            <td>
+                <a href="/invoice/{{r.id}}" class="btn btn-dark">Show</a>
+                <a href="/invoice/edit/header/{{r.id}}" class="btn btn-light">Edit Header</a>
+                <a href="/invoice/edit/body/{{r.id}}" class="btn btn-light">Edit Body</a>
+                <a href="#" class="btn btn-danger delete-invoice" data-id="{{ r.id }}">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+      
+    </tbody>
+</table>
+{% else %}
+    <p>No invoices to display</p>
+{% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/main.js"></script>
+{% endblock %}

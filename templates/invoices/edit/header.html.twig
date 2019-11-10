@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title%}Syminvoice Invoices - Edit{% endblock %}
+
+{% block body%} 
+<h1 class="text-center"> Update header invoice</h1>
+    {{ form_start(form)}}
+    {{ form_widget(form)}}
+    {{ form_end(form)}}
+    <a href="/">Go back</a>
+{% endblock %}
+
